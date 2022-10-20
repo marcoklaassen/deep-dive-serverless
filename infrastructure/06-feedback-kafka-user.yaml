@@ -58,4 +58,28 @@ spec:
           patternType: literal
         operation: Create
         host: '*'
+      - resource:
+          type: group
+          name: feedback-persistence
+          patternType: literal
+        operation: Describe
+        host: '*'
+      - resource:
+          type: group
+          name: feedback-persistence
+          patternType: literal
+        operation: Create
+        host: '*'
+      - resource:
+          type: group
+          name: feedback-persistence
+          patternType: literal
+        operation: Read
+        host: '*'
+      - resource:
+          type: group
+          name: feedback-persistence
+          patternType: literal
+        operation: Write
+        host: '*'
     type: simple
