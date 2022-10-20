@@ -14,3 +14,12 @@ curl -X POST -i -H 'Content-Type: application/json' -d "{\"rating\":\"11\"}" htt
 curl -i http[s]://<url>/feedback 
 ```
 
+## Test with ALI 
+```
+brew install nakabonne/ali/ali
+```
+
+```
+ali --duration=60s --rate=20 -t 120 http[s]://<url>
+```
+
