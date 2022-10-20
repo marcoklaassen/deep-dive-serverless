@@ -46,12 +46,17 @@ spec:
         - name: output
           workspace: shared-workspace
     - name: build-native-executable
+      params:
+        - name: workingDir
+          value: $(params.workingDir)
       runAfter:
         - fetch-repository
       taskSpec:
         workspaces:
           - name: source
             description: the source code
+        params:
+          - name: workingDir
         steps:
           - name: build-executable
             resources:

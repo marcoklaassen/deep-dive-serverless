@@ -1,32 +1,34 @@
 package click.klaassen.feedback;
 
-import io.quarkus.hibernate.reactive.panache.Panache;
-import io.quarkus.hibernate.reactive.panache.common.runtime.ReactiveTransactional;
-import io.smallrye.mutiny.Uni;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.microprofile.reactive.messaging.Incoming;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.control.ActivateRequestContext;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import java.util.List;
+
+import static click.klaassen.feedback.Feedback.*;
 
 @Path("/feedback")
 @ApplicationScoped
 @Slf4j
 public class FeedbackConsumer {
 
+    @Inject
+    EntityManager em;
+
     @Incoming("feedback-topic-in")
-    @ReactiveTransactional
-    @ActivateRequestContext
-    public Uni<Feedback> consume(Integer rating) {
-        var feedback = Feedback.builder().rating(rating).build();
-        return Panache.withTransaction(feedback::persist);
+    @Transactional
+    public void consume(Integer rating) {
+        em.persist(builder().rating(rating).build());
     }
 
     @GET
-    public Uni<List<Feedback>> get() {
-        return Feedback.listAll();
+    public String get() {
+        return em.createNamedQuery("Feedback.findAll", Feedback.class)
+                .getResultList().toString();
     }
 }

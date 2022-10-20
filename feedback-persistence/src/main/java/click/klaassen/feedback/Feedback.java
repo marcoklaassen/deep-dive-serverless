@@ -1,19 +1,22 @@
 package click.klaassen.feedback;
 
-import io.quarkus.hibernate.reactive.panache.PanacheEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import javax.persistence.Cacheable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Builder
+@ToString
 @Entity
-@Cacheable
 @NoArgsConstructor
 @AllArgsConstructor
-public class Feedback extends PanacheEntity {
-    @Column public Integer rating;
+@NamedQuery(name = "Feedback.findAll", query = "SELECT f FROM Feedback f")
+public class Feedback {
+    @Id
+    @SequenceGenerator(name = "FeedbackSeq", sequenceName = "feedback_id_seq", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(generator = "FeedbackSeq")
+    private Long id;
+    @Column private Integer rating;
 }
