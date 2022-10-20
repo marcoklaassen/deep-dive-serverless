@@ -25,9 +25,6 @@ spec:
       name: APPVERSION
       type: string
       default: latest
-    - description: working dir / sub folder
-      name: workingDir
-      default: ''
   tasks:
     - name: fetch-repository
       params:
@@ -46,24 +43,19 @@ spec:
         - name: output
           workspace: shared-workspace
     - name: build-native-executable
-      params:
-        - name: workingDir
-          value: $(params.workingDir)
       runAfter:
         - fetch-repository
       taskSpec:
         workspaces:
           - name: source
             description: the source code
-        params:
-          - name: workingDir
         steps:
           - name: build-executable
             resources:
               requests:
                 memory: 8Gi
             image: quay.io/quarkus/ubi-quarkus-native-image:22.2.0-java17
-            workingDir: /workspace/source$(params.workingDir)
+            workingDir: /workspace/source
             command: ["./mvnw", "package", "-Pnative"]
       workspaces:
         - name: source
