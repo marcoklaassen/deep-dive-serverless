@@ -33,3 +33,16 @@ spec:
             secretKeyRef:
               key: rootPassword
               name: mariadb-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mariadb
+  namespace: serverless-demo
+spec:
+  selector:
+    app: mariadb
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
