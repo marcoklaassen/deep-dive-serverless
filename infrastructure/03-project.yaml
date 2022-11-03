@@ -1,9 +1,9 @@
 kind: Project
 apiVersion: project.openshift.io/v1
 metadata:
-  name: serverless-demo
+  name: deep-dive-quarkus
   labels:
-    kubernetes.io/metadata.name: serverless-demo
+    kubernetes.io/metadata.name: deep-dive-quarkus
 spec:
   finalizers:
     - kubernetes

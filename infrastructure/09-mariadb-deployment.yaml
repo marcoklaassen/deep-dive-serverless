@@ -1,64 +1,35 @@
-apiVersion: apps.openshift.io/v1
-kind: DeploymentConfig
-metadata:
-  namespace: serverless-demo
-  name: mariadb
-spec:
-  selector:
-    app: mariadb
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: mariadb
-    spec:
-      containers:
-        - name: mariadb
-          image: registry.redhat.io/rhel9/mariadb-105
-          ports:
-            - containerPort: 3306
-              protocol: TCP
-          env:
-            - name: MYSQL_USER
-              valueFrom:
-                secretKeyRef:
-                  key: user
-                  name: mariadb-config
-            - name: MYSQL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  key: userPassword
-                  name: mariadb-config
-            - name: MYSQL_DATABASE
-              valueFrom:
-                secretKeyRef:
-                  key: database
-                  name: mariadb-config
-            - name: MYSQL_ROOT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  key: rootPassword
-                  name: mariadb-config
-  strategy:
-    type: Rolling
-    rollingParams:
-      timeoutSeconds: 600
-      updatePeriodSeconds: 1
-      intervalSeconds: 1
-      maxSurge: 25%
-      maxUnavailable: 25%
-  triggers:
-    - type: ConfigChange
----
 apiVersion: v1
-kind: Service
+kind: Pod
 metadata:
+  namespace: deep-dive-quarkus
   name: mariadb
-  namespace: serverless-demo
-spec:
-  selector:
+  labels:
     app: mariadb
-  ports:
-    - protocol: TCP
-      port: 3306
-      targetPort: 3306
+spec:
+  containers:
+    - name: mariadb
+      image: registry.redhat.io/rhel9/mariadb-105
+      ports:
+        - containerPort: 3306
+          protocol: TCP
+      env:
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              key: user
+              name: mariadb-config
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: userPassword
+              name: mariadb-config
+        - name: MYSQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              key: database
+              name: mariadb-config
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: rootPassword
+              name: mariadb-config

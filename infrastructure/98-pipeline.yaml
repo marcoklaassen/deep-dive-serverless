@@ -2,7 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
   name: quarkus-native-pipeline
-  namespace: serverless-demo
+  namespace: deep-dive-quarkus
 spec:
   workspaces:
     - name: shared-workspace

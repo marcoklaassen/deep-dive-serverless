@@ -1,8 +1,8 @@
 apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
 metadata:
-  namespace: serverless-demo
-  name: serverless-demo
+  namespace: deep-dive-quarkus
+  name: deep-dive-quarkus
 spec:
   kafka:
     config:
@@ -33,9 +33,9 @@ spec:
           type: scram-sha-512
   entityOperator:
     topicOperator:
-      watchedNamespace: "serverless-demo"
+      watchedNamespace: "deep-dive-quarkus"
     userOperator:
-      watchedNamespace: "serverless-demo"
+      watchedNamespace: "deep-dive-quarkus"
   zookeeper:
     storage:
       type: ephemeral
