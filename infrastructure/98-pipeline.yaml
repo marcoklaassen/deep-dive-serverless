@@ -2,7 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
   name: quarkus-native-pipeline
-  namespace: deep-dive-quarkus
+  namespace: deep-dive-kafka
 spec:
   workspaces:
     - name: shared-workspace

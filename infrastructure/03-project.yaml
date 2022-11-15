@@ -1,9 +1,9 @@
 kind: Project
 apiVersion: project.openshift.io/v1
 metadata:
-  name: deep-dive-quarkus
+  name: deep-dive-kafka
   labels:
-    kubernetes.io/metadata.name: deep-dive-quarkus
+    kubernetes.io/metadata.name: deep-dive-kafka
 spec:
   finalizers:
     - kubernetes

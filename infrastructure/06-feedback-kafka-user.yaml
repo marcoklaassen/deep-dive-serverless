@@ -3,8 +3,8 @@ kind: KafkaUser
 metadata:
   name: feedback-user
   labels:
-    strimzi.io/cluster: deep-dive-quarkus
-  namespace: deep-dive-quarkus
+    strimzi.io/cluster: deep-dive-kafka
+  namespace: deep-dive-kafka
 spec:
   authentication:
     type: scram-sha-512

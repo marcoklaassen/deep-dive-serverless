@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  namespace: deep-dive-quarkus
+  namespace: deep-dive-kafka
   name: mariadb
   labels:
     app: mariadb
@@ -38,7 +38,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mariadb
-  namespace: deep-dive-quarkus
+  namespace: deep-dive-kafka
 spec:
   selector:
     app: mariadb

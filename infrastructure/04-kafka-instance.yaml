@@ -1,8 +1,8 @@
 apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
 metadata:
-  namespace: deep-dive-quarkus
-  name: deep-dive-quarkus
+  namespace: deep-dive-kafka
+  name: deep-dive-kafka
 spec:
   kafka:
     config:
@@ -33,9 +33,9 @@ spec:
           type: scram-sha-512
   entityOperator:
     topicOperator:
-      watchedNamespace: "deep-dive-quarkus"
+      watchedNamespace: "deep-dive-kafka"
     userOperator:
-      watchedNamespace: "deep-dive-quarkus"
+      watchedNamespace: "deep-dive-kafka"
   zookeeper:
     storage:
       type: ephemeral
