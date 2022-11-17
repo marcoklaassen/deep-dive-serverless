@@ -3,7 +3,7 @@
 ## Related Repositories
 * [Feedback Form Kafka Producer with simple HTLM Frontend](https://github.com/marcoklaassen/deep-dive-serverless-feedback-form/tree/kafka-deep-dive)
 * [Feedback Backend with Kafka Consumer and Database Handling](https://github.com/marcoklaassen/deep-dive-serverless-feedback-persistence/tree/kafka-deep-dive)
-* [Red Hat SSO Deployment](https://github.com/marcoklaassen/deep-dive-quarkus-2)
+* [Red Hat SSO Deployment](https://github.com/marcoklaassen/deep-dive-quarkus-2/tree/kafka-deep-dive)
 
 ## Test with curl
 ```
